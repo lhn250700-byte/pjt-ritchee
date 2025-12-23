@@ -17,6 +17,7 @@
 
 
 ![타사 시스템 문제 정의](https://github.com/lhn250700-byte/pjt-ritchee/blob/main/pjt-ritchee/public/aa.png?raw=true)
+<br />
 
 # 👥 팀원 역할
 > ### *이하늘*
@@ -31,6 +32,7 @@
 
 > ### *김훈규*
 
+<br />
   
 # 🛠️ 기술 스택
 <div>

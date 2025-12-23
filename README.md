@@ -111,7 +111,7 @@
 
 <img src="https://img.shields.io/badge/postgresql-4169e1?style=flat-badge&logo=postgresql&logoColor=white"/>
 
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/Tailwind_CSS-grey?style=flat-square&logo=tailwind-css&logoColor=38B2AC" />
 
 <img src="https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=plastic&logo=apache-tomcat&logoColor=black" />
 

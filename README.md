@@ -215,5 +215,3 @@
     <img src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/image%205.jpg" alt="릿치 시연 영상" width="560"/>
   </a>
 </div>
-README.txt
-8KB

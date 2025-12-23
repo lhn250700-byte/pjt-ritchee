@@ -44,7 +44,6 @@
 <img src="https://img.shields.io/badge/axios.js-854195?style=flat-square&logo=axios&logoColor=5A29E4" />
 <img src="https://img.shields.io/badge/supabase-F80000?style=flat-square&logo=supabase&logoColor=white"/>
 <img src="https://img.shields.io/badge/postgresql-4169e1?style=flat-badge&logo=postgresql&logoColor=white"/>
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/>
 <img src="https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=plastic&logo=apache-tomcat&logoColor=black" />
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
 <img src="https://img.shields.io/badge/-Eclipse-2C2255?style=flat-square&logo=eclipse&logoColor=white"/>

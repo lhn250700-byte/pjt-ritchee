@@ -32,7 +32,7 @@
 > ### *김훈규*
 
   
-🛠️ 기술 스택
+# 🛠️ 기술 스택
 <div>
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
 <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat-square" />

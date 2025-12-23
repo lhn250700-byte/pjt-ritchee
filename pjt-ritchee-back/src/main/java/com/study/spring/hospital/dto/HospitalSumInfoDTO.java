@@ -1,0 +1,40 @@
+package com.study.spring.hospital.dto;
+
+public interface HospitalSumInfoDTO {
+		// Master
+		String getH_code();
+		String getH_name();
+		String getH_bigo();
+		String getH_content();
+		String getH_smpl_dgm();
+		String getH_addr();
+		String getH_tel1();
+		String getH_tel2();
+		String getH_long();
+		String getH_lat();
+		String getH_park_yn();
+		// schedule
+		String getH_mon_s();
+		String getH_mon_c();
+		String getH_tue_s();
+		String getH_tue_c();
+		String getH_wed_s();
+		String getH_wed_c();
+		String getH_tur_s();
+		String getH_tur_c();
+		String getH_fri_s();
+		String getH_fri_c();
+		String getH_sat_s();
+		String getH_sat_c();
+		String getH_sun_s();
+		String getH_sun_c();
+		String getH_hol_s();
+		String getH_hol_c();
+		String getH_lun_s();
+		String getH_lun_c();
+		// 통계자료
+		Long getReview_cnt();
+		Double getAvg_eval_pt();
+		Long getComment_cnt();
+		Long getLike_cnt();
+}

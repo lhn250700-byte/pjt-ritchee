@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="치과, 구로구치과, 구로치과, 리뷰, 병원리뷰, 병원, 치과리뷰, 릿치"
+    />
+    <meta
+      name="description"
+      content="구로구 주민들을 위한 솔직한 치과 리뷰, 릿치!"
+    />
+    <meta name="author" content="jumeogdajim" />
+
+    <!-- Open Graph 메타태그 -->
+    <meta property="og:title" content="RETCEE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" id="og-url" content="/" />
+    <meta
+      property="og:description"
+      content="구로구 주민들을 위한 솔직한 치과 리뷰, 릿치!"
+    />
+    <meta property="og:image" id="og-image" content="/og.png" />
+    <script>
+      // 현재 도메인을 자동으로 가져와서 절대 URL로 설정
+      (function () {
+        const baseUrl = window.location.origin;
+        const ogUrl = document.getElementById("og-url");
+        const ogImage = document.getElementById("og-image");
+        if (ogUrl) ogUrl.setAttribute("content", baseUrl + "/");
+        if (ogImage) ogImage.setAttribute("content", baseUrl + "/og.png");
+      })();
+    </script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <title>RETCEE</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%VITE_KAKAO_MAP_API_KEY%&libraries=services,clusterer,drawing"
+    ></script>
+  </body>
+</html>

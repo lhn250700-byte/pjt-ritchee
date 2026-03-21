@@ -140,7 +140,7 @@ function Home() {
                 onClick={() => navigate("/event/eventview/1")}
               >
                 <img
-                  src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pevent1.jpg"
+                  src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent1.jpg"
                   alt="img"
                   className="w-full h-full object-cover object-center lg:object-top"
                 />
@@ -153,7 +153,7 @@ function Home() {
                 onClick={() => navigate("/event/eventview/2")}
               >
                 <img
-                  src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pevent2.jpg"
+                  src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent2.jpg"
                   alt="img"
                   className="w-full h-full object-cover object-center lg:object-top"
                 />
@@ -166,7 +166,7 @@ function Home() {
                 onClick={() => navigate("/event/eventview/3")}
               >
                 <img
-                  src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pevent3.jpg"
+                  src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent3.jpg"
                   alt="img"
                   className="w-full h-full object-cover object-center lg:object-top"
                 />
@@ -179,7 +179,7 @@ function Home() {
                 onClick={() => navigate("/event/eventview/4")}
               >
                 <img
-                  src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pevent4.jpg"
+                  src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent4.jpg"
                   alt="img"
                   className="w-full h-full object-cover object-center lg:object-top"
                 />
@@ -211,7 +211,7 @@ function Home() {
                 >
                   <div className="w-full h-[150px] md:h-[300px] overflow-hidden rounded-[10px]">
                     <img
-                      src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+                      src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
                       alt="img"
                       className="w-full h-full object-cover"
                     />
@@ -306,7 +306,7 @@ function Home() {
 
                   <div className="cardImg rounded-[10px] overflow-hidden mt-5">
                     <img
-                      src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+                      src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
                       alt="img"
                       className="w-full h-full object-cover"
                     />
@@ -401,7 +401,7 @@ function Home() {
 
                   <div className="cardImg rounded-[10px] overflow-hidden mt-5">
                     <img
-                      src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+                      src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
                       alt="img"
                       className="w-full h-full object-cover"
                     />
@@ -496,7 +496,7 @@ function Home() {
 
                   <div className="cardImg rounded-[10px] overflow-hidden mt-5">
                     <img
-                      src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+                      src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
                       alt="img"
                       className="w-full h-full object-cover"
                     />

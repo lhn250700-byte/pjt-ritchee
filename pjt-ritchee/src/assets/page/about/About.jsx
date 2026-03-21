@@ -33,13 +33,13 @@ function About() {
       <div>
         <div className="w-full relative overflow-hidden myBg">
           <img
-            src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/about.jpg"
+            src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/about.jpg"
             alt="img"
             className="w-full h-full object-cover object-center block md:hidden"
           />
           <div className='w-full lg:h-[50vh] hidden md:block xl:hidden'>
             <img
-              src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pabout.jpg"
+              src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pAbout.png"
               alt="img"
               className="w-full h-full object-cover"
             />
@@ -47,7 +47,7 @@ function About() {
 
           <div className="w-full xl:h-[60vh] 2xl:h-[70vh] hidden xl:block">
             <img
-              src="https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/pabout.jpg"
+              src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pAbout.png"
               alt="img"
               className="w-full h-full object-cover"
             />

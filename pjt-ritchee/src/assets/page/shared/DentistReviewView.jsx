@@ -124,7 +124,7 @@ const DentistReviewView = () => {
           </div>
           <div className="imgWithReviewEval mb-5">
             <img
-              src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+              src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
               alt=""
               className="mb-[11px] "
             />

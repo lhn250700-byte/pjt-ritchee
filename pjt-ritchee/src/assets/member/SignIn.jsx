@@ -62,7 +62,7 @@ function SignIn() {
     <div className="  bg-main-01 myBg flex flex-col items-center justify-center h-screen ">
       <div>
         <img
-          src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/logo_wh.png"
+          src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/headerLogo.png"
           alt="logo"
           className="w-32 mb-6"
         />

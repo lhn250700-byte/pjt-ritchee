@@ -36,7 +36,7 @@ const DentCard = ({ hospital }) => {
 
       <div className="cardImg rounded-[10px] overflow-hidden mt-5">
         <img
-          src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/TESTIMG.png"
+          src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/hospitalImage.png"
           alt="img"
           className="w-full h-full object-cover"
         />

@@ -20,7 +20,7 @@ function MypageMain() {
         className=" flex flex-col items-center justify-center text-white w-full h-[300px] md:h-[400px] lg:h-[500px] myBg"
         style={{
           backgroundImage:
-            'url("https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/MyPageIMG.png")',
+            'url("https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/mpImage.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

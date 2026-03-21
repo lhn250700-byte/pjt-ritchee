@@ -19,7 +19,7 @@ function Footer() {
           {/* 로고 */}
           <Link to="/" className="block hover:opacity-80 transition-opacity duration-300 w-fit">
             <img
-              src="https://ocnuykfvdtebmondqppu.supabase.co/storage/v1/object/public/images/logo_wh.png"
+              src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/headerLogo.png"
               alt="logo"
               className="h-10 w-auto"
             />

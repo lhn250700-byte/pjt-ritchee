@@ -99,7 +99,7 @@ function MapPage() {
                 disableAutoPan: true,
               }}
               image={{
-                src: 'https://uosmaiisnppqgxbcbawc.supabase.co/storage/v1/object/public/images/mapmarker.png', // 마커이미지의 주소입니다
+                src: 'https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/mapMarker.png', // 마커이미지의 주소입니다
                 size: {
                   width: 35,
                   height: 53,

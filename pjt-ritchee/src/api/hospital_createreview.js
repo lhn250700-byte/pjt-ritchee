@@ -7,7 +7,7 @@ import { BASE_URL } from './config';
  */
 export const createReview = async (reviewData) => {
   try {
-    const res = await axios.post(`${BASE_URL}/review`, reviewData, {
+    const res = await axios.post(`${BASE_URL}/reviews`, reviewData, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -21,6 +21,6 @@ export const createReview = async (reviewData) => {
 
 // 병원 목록
 export const getHospitalList = async () => {
-  const { data } = await axios.get(`${BASE_URL}/hospital`);
+  const { data } = await axios.get(`${BASE_URL}/hospitals`);
   return data;
 };

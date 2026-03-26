@@ -57,25 +57,25 @@ public class HospitalController {
 	}
 	
 	// 전체 병원
-	@GetMapping("/api/hospital")
+	@GetMapping("/api/hospitals")
 	public List<HospitalDto> getHospital() {
 		return hService.findAllHospitalByIdDesc();
 	}
 	
 	// 예약별 리뷰 리스트
-	@GetMapping("/api/reviewedAppm")
-	public List<H_ReviewAppmDto> getReviewWithAppm() {
+	@GetMapping("/api/appms")
+	public List<H_ReviewAppmDto> getReviewWithAppm(@RequestParam("reviewed") boolean reviewed) {
 		return hService.findAllReviewByIdDesc();
 	}
 	
 	// 병원별 리뷰 리스트(리뷰 없으면 안나옴)
-	@GetMapping("/api/review")
+	@GetMapping("/api/reviews")
 	public List<H_ReviewListDto> getReviewList() {
 		return hService.findWithReivew();
 	}
 	
 	// 예약한 병원 리뷰 작성
-	@PostMapping("/api/review")
+	@PostMapping("/api/reviews")
 	public ResponseEntity<String> reviewCreate(@RequestBody ReviewCreateDto req) {
 		try {
 			hService.reviewCreate(req);
@@ -114,13 +114,13 @@ public class HospitalController {
 	}
 	
 	// 병원별 예약 리스트
-	@GetMapping("/api/appm")
+	@GetMapping("/api/appms")
 	public List<H_AppmListDto> getAppmList() {
 		return hService.findWithAppm();
 	}
 
 	// 특정 병원 예약	
-	@PostMapping("/api/appm")
+	@PostMapping("/api/appms")
 	public ResponseEntity<?> appmCreate(@RequestBody ReservationDto req) {
 		try {
 			Integer id = hService.appmCreate(req);

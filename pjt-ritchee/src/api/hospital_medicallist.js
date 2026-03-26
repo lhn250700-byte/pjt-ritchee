@@ -3,7 +3,7 @@ import { BASE_URL } from './config';
 
 // 병원 목록
 export const getHospitalList = async () => {
-  const { data } = await axios.get(`${BASE_URL}/hospital`);
+  const { data } = await axios.get(`${BASE_URL}/hospitals`);
   return data;
 };
 

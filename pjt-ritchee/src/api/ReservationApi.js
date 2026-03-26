@@ -39,7 +39,7 @@ export const getRunTime = async (h_code, time) => {
 
 // 예약 생성
 export const postReservation = async ({ h_code, date, content, userId }) => {
-  const { data: a_id } = await axios.post(`${BASE_URL}/appm`, {
+  const { data: a_id } = await axios.post(`${BASE_URL}/appms`, {
     h_code,
     a_date: date,
     a_content: content,

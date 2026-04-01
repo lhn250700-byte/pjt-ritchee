@@ -18,7 +18,6 @@ function ReviewHistory() {
       try {
         setLoading(true);
         const data = await getReviewList(user.id, currentPage, itemsPerPage);
-        console.log('리뷰 API 응답:', data);
 
         // 서버가 페이지네이션을 지원하는 경우
         if (data.content && data.totalElements !== undefined) {
@@ -116,7 +115,7 @@ function ReviewHistory() {
                         >
                           star
                         </span>
-                      )
+                      ),
                     )}
                   </li>
 

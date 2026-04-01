@@ -36,7 +36,6 @@ function ReservationCheck() {
   const getappmContent = async () => {
     try {
       const data = await getAppmContent(a_id);
-      console.log('소견서 데이터 ', data);
       setAppointment(data);
     } catch (error) {
       console.error('고객이 입력한 증상을 불러오지 못했습니다.', error);
@@ -158,8 +157,8 @@ function ReservationCheck() {
                     {appointment?.gender === 'M'
                       ? '남'
                       : appointment?.gender === 'F'
-                      ? '여'
-                      : ''}
+                        ? '여'
+                        : ''}
                   </div>
                   <div className="reservationDate dummy text-gray-deep">
                     · 예약 일자 : {date.split(' ')[0] ?? ''}

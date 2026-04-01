@@ -3,13 +3,15 @@ import { BASE_URL } from './config';
 
 // 사용자 예약 정보 조회
 export const getUserReservation = async (a_id, userId) => {
-  const { data } = await axios.get(`${BASE_URL}/appmUser/${a_id}/userId/${userId}`);
+  const { data } = await axios.get(`${BASE_URL}/users/${userId}/appms/${a_id}`);
   return data;
 };
 
 // 병원 관계자용 예약 정보 조회
 export const getAppmContent = async (a_id) => {
-  const { data } = await axios.get(`${BASE_URL}/appminfo`, { params: { a_id } });
+  const { data } = await axios.get(`${BASE_URL}/appminfo`, {
+    params: { a_id },
+  });
   return data;
 };
 

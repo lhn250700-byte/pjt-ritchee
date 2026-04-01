@@ -36,9 +36,17 @@ function EditInfo() {
       });
 
       // 성별 설정 (user.gender가 '남'이면 option1, '여'이면 option2)
-      if (user.gender === '남' || user.gender === '남자' || user.gender === 'M') {
+      if (
+        user.gender === '남' ||
+        user.gender === '남자' ||
+        user.gender === 'M'
+      ) {
         setSelect('option1');
-      } else if (user.gender === '여' || user.gender === '여자' || user.gender === 'F') {
+      } else if (
+        user.gender === '여' ||
+        user.gender === '여자' ||
+        user.gender === 'F'
+      ) {
         setSelect('option2');
       }
     }
@@ -55,12 +63,6 @@ function EditInfo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log('handleSubmit 실행됨');
-    console.log('checked:', checked);
-    console.log('form:', form);
-    console.log('select:', select);
-    console.log('user:', user);
 
     if (!checked) {
       alert('개인 정보 체크 동의해 주세요.');
@@ -120,7 +122,11 @@ function EditInfo() {
       console.log('업데이트할 데이터:', updateData);
       console.log('사용자 ID:', user.id);
 
-      const { data, error: updateError } = await supabase.from('h_user').update(updateData).eq('id', user.id).select();
+      const { data, error: updateError } = await supabase
+        .from('h_user')
+        .update(updateData)
+        .eq('id', user.id)
+        .select();
 
       console.log('업데이트 결과:', { data, error: updateError });
 
@@ -143,7 +149,10 @@ function EditInfo() {
           });
 
           const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('비밀번호 업데이트 타임아웃')), 1000)
+            setTimeout(
+              () => reject(new Error('비밀번호 업데이트 타임아웃')),
+              1000,
+            ),
           );
 
           const { data: pwdData, error: passwordError } = await Promise.race([
@@ -154,11 +163,17 @@ function EditInfo() {
             return { data: null, error: err };
           });
 
-          console.log('비밀번호 업데이트 결과:', { data: pwdData, error: passwordError });
+          console.log('비밀번호 업데이트 결과:', {
+            data: pwdData,
+            error: passwordError,
+          });
 
           if (passwordError) {
             // 기존 비밀번호와 같다는 오류는 무시하고 계속 진행
-            if (passwordError.message && passwordError.message.includes('different from the old password')) {
+            if (
+              passwordError.message &&
+              passwordError.message.includes('different from the old password')
+            ) {
               console.log('비밀번호가 기존과 동일하여 변경하지 않음');
             } else {
               console.error('비밀번호 변경 오류:', passwordError);
@@ -180,11 +195,15 @@ function EditInfo() {
       if (form.email && form.email.trim() !== user.email) {
         try {
           console.log('이메일 업데이트 시작');
-          const { data: emailData, error: emailError } = await supabase.auth.updateUser({
-            email: form.email.trim(),
-          });
+          const { data: emailData, error: emailError } =
+            await supabase.auth.updateUser({
+              email: form.email.trim(),
+            });
 
-          console.log('이메일 업데이트 결과:', { data: emailData, error: emailError });
+          console.log('이메일 업데이트 결과:', {
+            data: emailData,
+            error: emailError,
+          });
 
           if (emailError) {
             console.error('이메일 변경 오류:', emailError);
@@ -285,7 +304,10 @@ function EditInfo() {
                 </div>
                 {/* 성별 */}
                 <div className="flex gap-4 mb-3">
-                  <label className="flex items-center gap-2 cursor-pointer" onClick={() => setSelect('option1')}>
+                  <label
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => setSelect('option1')}
+                  >
                     <input
                       type="radio"
                       name="gender"
@@ -294,14 +316,21 @@ function EditInfo() {
                       onChange={() => setSelect('option1')}
                     />
                     {select === 'option1' ? (
-                      <span className="material-icons text-main-02">radio_button_checked</span>
+                      <span className="material-icons text-main-02">
+                        radio_button_checked
+                      </span>
                     ) : (
-                      <span className="material-icons text-main-02">radio_button_unchecked</span>
+                      <span className="material-icons text-main-02">
+                        radio_button_unchecked
+                      </span>
                     )}
                     남
                   </label>
 
-                  <label className="flex items-center gap-2 cursor-pointer" onClick={() => setSelect('option2')}>
+                  <label
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => setSelect('option2')}
+                  >
                     <input
                       type="radio"
                       name="gender"
@@ -310,9 +339,13 @@ function EditInfo() {
                       onChange={() => setSelect('option2')}
                     />
                     {select === 'option2' ? (
-                      <span className="material-icons text-main-02">radio_button_checked</span>
+                      <span className="material-icons text-main-02">
+                        radio_button_checked
+                      </span>
                     ) : (
-                      <span className="material-icons text-main-02">radio_button_unchecked</span>
+                      <span className="material-icons text-main-02">
+                        radio_button_unchecked
+                      </span>
                     )}
                     여
                   </label>
@@ -371,7 +404,8 @@ function EditInfo() {
                   </span>
 
                   <span className="text-gray-mid !text-xs md:!text-base">
-                    병원 예약을 위해 기본 개인정보를 수집·이용합니다. 예약 완료 후 관련 법령에 따라 보관 후 파기합니다.
+                    병원 예약을 위해 기본 개인정보를 수집·이용합니다. 예약 완료
+                    후 관련 법령에 따라 보관 후 파기합니다.
                   </span>
                 </div>
                 {/* 버튼 */}

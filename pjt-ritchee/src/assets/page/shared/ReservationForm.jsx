@@ -131,7 +131,7 @@ function ReservationForm() {
   const postAppm = async () => {
     if ((await runTime()) === 'N') {
       alert(
-        '예약은 치과 운영 시간 내에서 가능하며, 점심시간을 제외한 시간대로 선택해 주시기 바랍니다.'
+        '예약은 치과 운영 시간 내에서 가능하며, 점심시간을 제외한 시간대로 선택해 주시기 바랍니다.',
       );
       return;
     }
@@ -149,7 +149,7 @@ function ReservationForm() {
     }
 
     try {
-      const { data: a_id } = await axios.post(`${BASE_URL}/appm`, {
+      const { data: a_id } = await axios.post(`${BASE_URL}/appms`, {
         h_code: h_code,
         a_date: res,
         a_content: formData.hospitalSymptom,
@@ -356,7 +356,7 @@ function ReservationForm() {
                         const dayOfWeek = date.getDay(); // 0:일, 6:토
                         const dateStr = moment(date).format('YYYY-MM-DD');
                         const isHoliday = holidays.some(
-                          (h) => h.date === dateStr
+                          (h) => h.date === dateStr,
                         );
 
                         // 텍스트 색상 결정
@@ -381,7 +381,7 @@ function ReservationForm() {
                                 moment(date).isBefore(moment().startOf('day'))
                               ) {
                                 alert(
-                                  '과거 일자로 예약할 수 없습니다. 현재 일자 이후로 예약하세요.'
+                                  '과거 일자로 예약할 수 없습니다. 현재 일자 이후로 예약하세요.',
                                 );
                                 return;
                               }

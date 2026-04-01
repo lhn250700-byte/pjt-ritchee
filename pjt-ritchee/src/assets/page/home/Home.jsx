@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../../componetns/Button";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../../componetns/Button';
 import {
   getHospitalsByRating,
   getHospitalsByReview,
   getHospitalsByCommentCnt,
   getTopHospitals,
-} from "../../../api/hospitalApi_home";
+} from '../../../api/hospitalApi_home';
 
 function Home() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Home() {
       stars.push(
         <span key={`full-${i}`} className="material-icons">
           star
-        </span>
+        </span>,
       );
     }
     // 반 별
@@ -37,7 +37,7 @@ function Home() {
       stars.push(
         <span key="half" className="material-icons">
           star_half
-        </span>
+        </span>,
       );
     }
     // 빈 별
@@ -45,7 +45,7 @@ function Home() {
       stars.push(
         <span key={`empty-${i}`} className="material-icons">
           star_outline
-        </span>
+        </span>,
       );
     }
 
@@ -57,10 +57,9 @@ function Home() {
     const fetchHospitals = async () => {
       try {
         const data = await getHospitalsByRating(0, 6);
-        console.log(data);
         setHospitals(data.content || data);
       } catch (error) {
-        console.error("Error fetching hospitals:", error);
+        console.error('Error fetching hospitals:', error);
       }
     };
 
@@ -72,10 +71,10 @@ function Home() {
     const fetchHospitalsReview = async () => {
       try {
         const data = await getHospitalsByReview(0, 6);
-        console.log(data);
+
         setHospitalsReview(data.content || data);
       } catch (error) {
-        console.error("Error fetching hospitals by review:", error);
+        console.error('Error fetching hospitals by review:', error);
       }
     };
 
@@ -87,10 +86,10 @@ function Home() {
     const fetchHospitalsComment = async () => {
       try {
         const data = await getHospitalsByCommentCnt(0, 6);
-        console.log(data);
+
         setHospitalsComment(data.content || data);
       } catch (error) {
-        console.error("Error fetching hospitals by comment:", error);
+        console.error('Error fetching hospitals by comment:', error);
       }
     };
 
@@ -102,10 +101,10 @@ function Home() {
     const fetchTopHospitals = async () => {
       try {
         const data = await getTopHospitals(0, 3);
-        console.log(data);
+
         setTopHospitals(data.content || data);
       } catch (error) {
-        console.error("Error fetching top hospitals:", error);
+        console.error('Error fetching top hospitals:', error);
       }
     };
 
@@ -113,13 +112,13 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const swiper = new window.Swiper(".home-swiper", {
+    const swiper = new window.Swiper('.home-swiper', {
       slidesPerView: 1,
       spaceBetween: 0,
       loop: true,
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
     });
 
@@ -137,7 +136,7 @@ function Home() {
             <div className="swiper-slide">
               <div
                 className="w-full h-[60vw] md:h-[45vw] lg:h-[50vw] overflow-hidden cursor-pointer"
-                onClick={() => navigate("/event/eventview/1")}
+                onClick={() => navigate('/event/eventview/1')}
               >
                 <img
                   src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent1.jpg"
@@ -150,7 +149,7 @@ function Home() {
             <div className="swiper-slide">
               <div
                 className="w-full h-[60vw] md:h-[45vw] lg:h-[50vw] overflow-hidden cursor-pointer"
-                onClick={() => navigate("/event/eventview/2")}
+                onClick={() => navigate('/event/eventview/2')}
               >
                 <img
                   src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent2.jpg"
@@ -163,7 +162,7 @@ function Home() {
             <div className="swiper-slide">
               <div
                 className="w-full h-[60vw] md:h-[45vw] lg:h-[50vw] overflow-hidden cursor-pointer"
-                onClick={() => navigate("/event/eventview/3")}
+                onClick={() => navigate('/event/eventview/3')}
               >
                 <img
                   src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent3.jpg"
@@ -176,7 +175,7 @@ function Home() {
             <div className="swiper-slide">
               <div
                 className="w-full h-[60vw] md:h-[45vw] lg:h-[50vw] overflow-hidden cursor-pointer"
-                onClick={() => navigate("/event/eventview/4")}
+                onClick={() => navigate('/event/eventview/4')}
               >
                 <img
                   src="https://rfncpfijwobwtxrsixlw.supabase.co/storage/v1/object/public/images/ritchee/pevent4.jpg"
@@ -218,9 +217,9 @@ function Home() {
                   </div>
                   <span
                     className="mt-2"
-                    style={{ fontSize: "clamp(12px, 1.5vw, 20px)" }}
+                    style={{ fontSize: 'clamp(12px, 1.5vw, 20px)' }}
                   >
-                    {hospital.h_name || "병원명"}
+                    {hospital.h_name || '병원명'}
                   </span>
                 </div>
               ))}
@@ -236,8 +235,8 @@ function Home() {
             onClick={() => setActiveTab(0)}
             className={`flex-1 py-3 text-center font-semibold transition-colors rounded-tl-[10px] rounded-tr-[10px] border border-white cursor-pointer ${
               activeTab === 0
-                ? "bg-main-02 text-white"
-                : "bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white"
+                ? 'bg-main-02 text-white'
+                : 'bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white'
             }`}
           >
             별점 높은 순
@@ -246,8 +245,8 @@ function Home() {
             onClick={() => setActiveTab(1)}
             className={`flex-1 py-3 text-center font-semibold transition-colors rounded-tl-[10px] rounded-tr-[10px] border border-white cursor-pointer ${
               activeTab === 1
-                ? "bg-main-02 text-white"
-                : "bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white"
+                ? 'bg-main-02 text-white'
+                : 'bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white'
             }`}
           >
             리뷰 많은 순
@@ -256,8 +255,8 @@ function Home() {
             onClick={() => setActiveTab(2)}
             className={`flex-1 py-3 text-center font-semibold transition-colors rounded-tl-[10px] rounded-tr-[10px] border border-white cursor-pointer ${
               activeTab === 2
-                ? "bg-main-02 text-white"
-                : "bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white"
+                ? 'bg-main-02 text-white'
+                : 'bg-gray-light text-gray-deep hover:bg-main-01 hover:text-white'
             }`}
           >
             댓글 많은 순
@@ -267,13 +266,13 @@ function Home() {
         <div className="container">
           <h4 className="tit mt-8">
             <span className="material-icons">
-              {activeTab === 0 && "star"}
-              {activeTab === 1 && "edit"}
-              {activeTab === 2 && "chat"}
+              {activeTab === 0 && 'star'}
+              {activeTab === 1 && 'edit'}
+              {activeTab === 2 && 'chat'}
             </span>
-            {activeTab === 0 && "별점 높은 병원 순위"}
-            {activeTab === 1 && "리뷰 많은 병원 순위"}
-            {activeTab === 2 && "댓글 많은 병원 순위"}
+            {activeTab === 0 && '별점 높은 병원 순위'}
+            {activeTab === 1 && '리뷰 많은 병원 순위'}
+            {activeTab === 2 && '댓글 많은 병원 순위'}
           </h4>
 
           {/* 탭 콘텐츠 */}
@@ -285,13 +284,13 @@ function Home() {
                 <div
                   key={hospital.h_code}
                   className={`tab_cont text-center text-deep p-6 bg-white rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-full md:w-[48%] lg:w-[30%] ${
-                    index === hospitals.length - 1 ? "hidden md:block" : ""
+                    index === hospitals.length - 1 ? 'hidden md:block' : ''
                   }`}
                 >
                   <div className="tab_cont_tit flex flex-col items-start">
                     <h4 className="tit mr-4" id="cardId">
                       <span className="material-icons">local_hospital</span>
-                      {hospital.h_name || "병원명"}
+                      {hospital.h_name || '병원명'}
                     </h4>
 
                     <div className="stars flex flex-row text-point items-center">
@@ -317,39 +316,39 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           location_on
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_addr || "주소 없음"}
+                        {hospital.h_addr || '주소 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           phone
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_tel1 || "전화번호 없음"}
+                        {hospital.h_tel1 || '전화번호 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           edit_calendar
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{" "}
+                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{' '}
                         {hospital.comment_cnt || 0}건
                       </span>
                     </li>
@@ -357,14 +356,14 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           description
                         </span>
                       </div>
                       <span className="dummy text-gray-deep mt-0.5">
-                        {hospital.h_park_yn || "내용 없음"}, &nbsp;
-                        {hospital.h_bigo || "내용 없음"}
+                        {hospital.h_park_yn || '내용 없음'}, &nbsp;
+                        {hospital.h_bigo || '내용 없음'}
                       </span>
                     </li>
                   </ul>
@@ -379,14 +378,14 @@ function Home() {
                   key={hospital.h_code}
                   className={`tab_cont text-center text-deep p-6 bg-white rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-full md:w-[48%] lg:w-[30%] ${
                     index === hospitalsReview.length - 1
-                      ? "hidden md:block"
-                      : ""
+                      ? 'hidden md:block'
+                      : ''
                   }`}
                 >
                   <div className="tab_cont_tit flex flex-col items-start">
                     <h4 className="tit mr-4" id="cardId">
                       <span className="material-icons">local_hospital</span>
-                      {hospital.h_name || "병원명"}
+                      {hospital.h_name || '병원명'}
                     </h4>
 
                     <div className="stars flex flex-row text-point items-center">
@@ -412,39 +411,39 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           location_on
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_addr || "주소 없음"}
+                        {hospital.h_addr || '주소 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           phone
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_tel1 || "전화번호 없음"}
+                        {hospital.h_tel1 || '전화번호 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           edit_calendar
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{" "}
+                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{' '}
                         {hospital.comment_cnt || 0}건
                       </span>
                     </li>
@@ -452,14 +451,14 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           description
                         </span>
                       </div>
                       <span className="dummy text-gray-deep mt-0.5">
-                        {hospital.h_park_yn || "내용 없음"}, &nbsp;
-                        {hospital.h_bigo || "내용 없음"}
+                        {hospital.h_park_yn || '내용 없음'}, &nbsp;
+                        {hospital.h_bigo || '내용 없음'}
                       </span>
                     </li>
                   </ul>
@@ -474,14 +473,14 @@ function Home() {
                   key={hospital.h_code}
                   className={`tab_cont text-center text-deep p-6 bg-white rounded-[10px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-full md:w-[48%] lg:w-[30%] ${
                     index === hospitalsComment.length - 1
-                      ? "hidden md:block"
-                      : ""
+                      ? 'hidden md:block'
+                      : ''
                   }`}
                 >
                   <div className="tab_cont_tit flex flex-col items-start">
                     <h4 className="tit mr-4" id="cardId">
                       <span className="material-icons">local_hospital</span>
-                      {hospital.h_name || "병원명"}
+                      {hospital.h_name || '병원명'}
                     </h4>
 
                     <div className="stars flex flex-row text-point items-center">
@@ -507,39 +506,39 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           location_on
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_addr || "주소 없음"}
+                        {hospital.h_addr || '주소 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           phone
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        {hospital.h_tel1 || "전화번호 없음"}
+                        {hospital.h_tel1 || '전화번호 없음'}
                       </span>
                     </li>
                     <li className="flex items-center gap-[5px] mb-[5px]">
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           edit_calendar
                         </span>
                       </div>
                       <span className="dummy text-gray-deep">
-                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{" "}
+                        진료 이용 후기 {hospital.review_cnt || 0}건, 댓글{' '}
                         {hospital.comment_cnt || 0}건
                       </span>
                     </li>
@@ -547,14 +546,14 @@ function Home() {
                       <div className="bg-main-02 rounded-full w-[15px] h-[15px] flex justify-center items-center p-2.5 shrink-0 mt-[2px]">
                         <span
                           className="material-icons text-white"
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: '14px' }}
                         >
                           description
                         </span>
                       </div>
                       <span className="dummy text-gray-deep mt-0.5">
-                        {hospital.h_park_yn || "내용 없음"}, &nbsp;
-                        {hospital.h_bigo || "내용 없음"}
+                        {hospital.h_park_yn || '내용 없음'}, &nbsp;
+                        {hospital.h_bigo || '내용 없음'}
                       </span>
                     </li>
                   </ul>
@@ -571,10 +570,10 @@ function Home() {
               // activeTab에 따라 정렬 파라미터 추가
               const sortParam =
                 activeTab === 0
-                  ? "rating"
+                  ? 'rating'
                   : activeTab === 1
-                  ? "review"
-                  : "comment";
+                    ? 'review'
+                    : 'comment';
               navigate(`/dentistList?sort=${sortParam}`);
             }}
             className="cursor-pointer"

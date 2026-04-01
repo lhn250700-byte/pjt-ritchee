@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, Form, useNavigate, useLocation } from "react-router-dom";
-import Button from "../../../componetns/Button";
+import React, { useEffect, useState } from 'react';
+import { Link, Form, useNavigate, useLocation } from 'react-router-dom';
+import Button from '../../../componetns/Button';
 import {
   createReview,
   getHospitalList,
-} from "../../../api/hospital_createreview";
-import { useUser } from "../../../context/UserContext";
+} from '../../../api/hospital_createreview';
+import { useUser } from '../../../context/UserContext';
 
 function ReviewForm() {
   const { user } = useUser();
@@ -15,19 +15,18 @@ function ReviewForm() {
   // location.state에서 안전하게 가져오기
   const {
     hospitalCode,
-    hospitalName: HospitalName = "",
+    hospitalName: HospitalName = '',
     a_id,
   } = location.state || {};
 
   const [rating, setRating] = useState(0);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [hospitalName, setHospitalName] = useState(HospitalName);
-  console.log(a_id);
   useEffect(() => {
     if (!hospitalCode) {
-      alert("잘못된 접근입니다.");
-      navigate("/mypage/medicalList");
+      alert('잘못된 접근입니다.');
+      navigate('/mypage/medicalList');
       return;
     }
     (async () => {
@@ -36,7 +35,7 @@ function ReviewForm() {
         const hospital = hospitals.find((h) => h.h_code === hospitalCode);
         if (hospital) setHospitalName(hospital.h_name);
       } catch (err) {
-        console.error("병원 정보 조회 실패", err);
+        console.error('병원 정보 조회 실패', err);
       }
     })();
   }, [hospitalCode, navigate]);
@@ -47,19 +46,19 @@ function ReviewForm() {
 
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate("/mypage/medicalList");
+    navigate('/mypage/medicalList');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!rating || !title || !content) {
-      alert("별점, 제목, 내용을 모두 입력해주세요.");
+      alert('별점, 제목, 내용을 모두 입력해주세요.');
       return;
     }
 
     if (!hospitalCode || !hospitalName) {
-      alert("병원 정보를 불러올 수 없습니다.");
+      alert('병원 정보를 불러올 수 없습니다.');
       return;
     }
 
@@ -71,18 +70,16 @@ function ReviewForm() {
       r_content: content,
       r_eval_pt: rating,
       r_views: 0,
-      r_del_yn: "N",
+      r_del_yn: 'N',
     };
-
-    console.log("전송할 리뷰 데이터:", reviewData);
 
     try {
       await createReview(reviewData);
-      alert("리뷰가 등록되었습니다.");
-      navigate("/mypage/reviewHistory");
+      alert('리뷰가 등록되었습니다.');
+      navigate('/mypage/reviewHistory');
     } catch (err) {
-      console.error("리뷰 등록 실패", err);
-      alert(err.response?.data?.message || "리뷰 등록 중 오류가 발생했습니다.");
+      console.error('리뷰 등록 실패', err);
+      alert(err.response?.data?.message || '리뷰 등록 중 오류가 발생했습니다.');
     }
   };
 
@@ -125,7 +122,7 @@ function ReviewForm() {
                     className="material-icons !text-[clamp(30px,10vw,80px)] cursor-pointer"
                     onClick={() => handleStarClick(starNum)}
                   >
-                    {starNum <= rating ? "star" : "star_outline"}
+                    {starNum <= rating ? 'star' : 'star_outline'}
                   </span>
                 ))}
               </div>

@@ -17,7 +17,6 @@ function ReservationList() {
         if (!user?.id) return;
         const data = await getAppmList(user.id, currentPage, itemsPerPage);
         setAppmList(data.content || data);
-        console.log('test', data);
         // API 응답에서 totalElements 저장
         setTotalElements(data.totalElements || 0);
       } catch (error) {
@@ -40,7 +39,9 @@ function ReservationList() {
 
     // 낙관적 업데이트: 취소된 항목을 즉시 목록에서 제거
     const previousList = [...appmList];
-    setAppmList((prevList) => prevList.filter((item) => (item.id ?? item.a_id) !== id));
+    setAppmList((prevList) =>
+      prevList.filter((item) => (item.id ?? item.a_id) !== id),
+    );
 
     try {
       await getAppmListDelete(id);
@@ -55,7 +56,10 @@ function ReservationList() {
           setTotalElements(data.totalElements || 0);
 
           // 현재 페이지에 아이템이 없고 이전 페이지가 있으면 이전 페이지로 이동
-          if ((data.content?.length || data.length || 0) === 0 && currentPage > 0) {
+          if (
+            (data.content?.length || data.length || 0) === 0 &&
+            currentPage > 0
+          ) {
             setCurrentPage(currentPage - 1);
           }
         } catch (refreshError) {
@@ -85,7 +89,10 @@ function ReservationList() {
               setTotalElements(totalItems);
             }
 
-            if ((data.content?.length || data.length || 0) === 0 && currentPage > 0) {
+            if (
+              (data.content?.length || data.length || 0) === 0 &&
+              currentPage > 0
+            ) {
               setCurrentPage(currentPage - 1);
             }
           } catch (refreshError) {
@@ -115,8 +122,10 @@ function ReservationList() {
   const formatPhone = (phone) => {
     if (!phone) return '';
     const digits = phone.replace(/\D/g, '');
-    if (digits.length === 11) return digits.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-    if (digits.length === 10) return digits.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+    if (digits.length === 11)
+      return digits.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    if (digits.length === 10)
+      return digits.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
     return phone;
   };
 
@@ -147,7 +156,9 @@ function ReservationList() {
       "
         >
           {appmList.length === 0 ? (
-            <p className="w-full text-left text-gray-500 pl-[1vw]">작성한 예약 내역이 없습니다.</p>
+            <p className="w-full text-left text-gray-500 pl-[1vw]">
+              작성한 예약 내역이 없습니다.
+            </p>
           ) : (
             appmList.map((reservation, index) => (
               <div
@@ -163,16 +174,26 @@ function ReservationList() {
                     <span className="material-icons">local_hospital</span>
                     {reservation.h_name}
                   </h4>
-                  <li className="break-words">· 환자명: {reservation.u_name}</li>
-                  <li className="break-words">· 증상: {reservation.a_content}</li>
+                  <li className="break-words">
+                    · 환자명: {reservation.u_name}
+                  </li>
+                  <li className="break-words">
+                    · 증상: {reservation.a_content}
+                  </li>
                   <li>· 나이: {reservation.age}</li>
                   <li>· 성별: {reservation.gender}</li>
                   <li>· 예약 일자: {reservation.a_date}</li>
                   <li>· 예약 시간: {reservation.a_time}</li>
                   <li>· 연락처: {formatPhone(reservation.phone)}</li>
-                  <li className="break-words">· 특이 사항: {reservation.text}</li>
-                  <li className="break-words">· 진단명: {reservation.a_dia_name}</li>
-                  <li className="break-words">· 진단 내용: {reservation.a_dia_content}</li>
+                  <li className="break-words">
+                    · 특이 사항: {reservation.text}
+                  </li>
+                  <li className="break-words">
+                    · 진단명: {reservation.a_dia_name}
+                  </li>
+                  <li className="break-words">
+                    · 진단 내용: {reservation.a_dia_content}
+                  </li>
                 </ul>
 
                 <div className="flex flex-wrap justify-between w-full mt-5 gap-2">
@@ -180,7 +201,9 @@ function ReservationList() {
                     size="mid"
                     variant="primary"
                     className="flex-1 min-w-[100px]"
-                    onClick={() => alert('수정중입니다. 병원 연락처로 문의바랍니다.')}
+                    onClick={() =>
+                      alert('수정중입니다. 병원 연락처로 문의바랍니다.')
+                    }
                   >
                     예약 수정
                   </Button>

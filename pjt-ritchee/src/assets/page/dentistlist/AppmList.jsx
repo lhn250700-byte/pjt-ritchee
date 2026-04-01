@@ -36,9 +36,8 @@ function AppmList() {
         const data = await getAppmListOfHospital(
           user.id,
           currentPage,
-          itemsPerPage
+          itemsPerPage,
         );
-        console.log(data);
 
         setAppmList(Array.isArray(data.content) ? data.content : []);
         setTotalElements(data.totalElements || 0);

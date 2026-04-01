@@ -63,10 +63,10 @@ public class HospitalController {
 	}
 	
 	// 예약별 리뷰 리스트
-	@GetMapping("/api/appms")
-	public List<H_ReviewAppmDto> getReviewWithAppm(@RequestParam("reviewed") boolean reviewed) {
-		return hService.findAllReviewByIdDesc();
-	}
+//	@GetMapping("/api/appms")
+//	public List<H_ReviewAppmDto> getReviewWithAppm(@RequestParam("reviewed") boolean reviewed) {
+//		return hService.findAllReviewByIdDesc();
+//	}
 	
 	// 병원별 리뷰 리스트(리뷰 없으면 안나옴)
 	@GetMapping("/api/reviews")
@@ -114,10 +114,10 @@ public class HospitalController {
 	}
 	
 	// 병원별 예약 리스트
-	@GetMapping("/api/appms")
-	public List<H_AppmListDto> getAppmList() {
-		return hService.findWithAppm();
-	}
+//	@GetMapping("/api/appms")
+//	public List<H_AppmListDto> getAppmList() {
+//		return hService.findWithAppm();
+//	}
 
 	// 특정 병원 예약	
 	@PostMapping("/api/appms")
@@ -131,11 +131,17 @@ public class HospitalController {
 	}
 	
 //	예약 개별 조회
-	@GetMapping("/api/appmUser/{a_id}/userId/{userId}")
-	public H_AppmUserHosDto getAppmWithUser(
+	@GetMapping("/api/users/{userId}/appms/{a_id}")
+	public ResponseEntity<?> getAppmWithUser(
 			@PathVariable("a_id") Integer a_id, 
 			@PathVariable("userId") UUID userId) {
-	    return hService.findAppmWithUserById(a_id, userId);
+		try {
+			H_AppmUserHosDto results = hService.findAppmWithUserById(a_id, userId);
+			return ResponseEntity.ok(results);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Find AppmUser FAILURE: " + e.getMessage());
+		}
+
 	}
 //	예약 개별 조회(관계자용 a_id로만)
 	@GetMapping("/api/appmContent")

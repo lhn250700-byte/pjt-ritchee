@@ -3,7 +3,10 @@ import Button from '../../../componetns/Button';
 import moment from 'moment';
 import { useUser } from '../../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { createComment, getCommentsByReviewId } from '../../../api/ReviewAndCommentApi';
+import {
+  createComment,
+  getCommentsByReviewId,
+} from '../../../api/ReviewAndCommentApi';
 
 const Comment = ({ reviewId, countFn }) => {
   const { user } = useUser();
@@ -13,7 +16,6 @@ const Comment = ({ reviewId, countFn }) => {
   const commentFetch = async () => {
     try {
       const data = await getCommentsByReviewId(reviewId);
-      console.log(data);
       setComment({
         comments: data.comments,
       });
@@ -73,23 +75,34 @@ const Comment = ({ reviewId, countFn }) => {
             key={i}
           >
             <div className="comment dummy md:text-base! py-3.5! container">
-              <div className="commentContent mb-5">{c.c_content || '댓글 없음'}</div>
+              <div className="commentContent mb-5">
+                {c.c_content || '댓글 없음'}
+              </div>
               <div className="commentEtc text-gray-deep flex justify-between">
-                <div className="commentWriter">작성자 : {c?.name || '작성자 없음'}</div>
+                <div className="commentWriter">
+                  작성자 : {c?.name || '작성자 없음'}
+                </div>
                 <div className="date">
-                  {c?.createdAt ? moment(c.createdAt).format('YYYY-MM-DD HH:mm:ss') : '2025-02-11 14:25:41'}
+                  {c?.createdAt
+                    ? moment(c.createdAt).format('YYYY-MM-DD HH:mm:ss')
+                    : '2025-02-11 14:25:41'}
                 </div>
               </div>
             </div>
           </li>
         ))
       ) : (
-        <p className="w-full text-center text-gray-500 pt-10 py-5 myBg bg-light-02">작성된 댓글이 없습니다.</p>
+        <p className="w-full text-center text-gray-500 pt-10 py-5 myBg bg-light-02">
+          작성된 댓글이 없습니다.
+        </p>
       )}
 
       {/* 댓글 작성 */}
       <li className="myBg bg-light-02 border border-b-main-01 border-t-0 border-x-0">
-        <form className="comment dummy md:text-base! py-3.5! container" onSubmit={submitHandler}>
+        <form
+          className="comment dummy md:text-base! py-3.5! container"
+          onSubmit={submitHandler}
+        >
           <textarea
             id="comment"
             name="comment"

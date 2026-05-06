@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,7 @@ import com.study.spring.hospital.dto.ReviewDto;
 import com.study.spring.hospital.entity.H_appm;
 import com.study.spring.hospital.entity.H_review;
 import com.study.spring.hospital.entity.Hospital;
+import com.study.spring.hospital.entity.Hospital_s;
 import com.study.spring.hospital.repository.HospitalAppmRepository;
 
 import com.study.spring.hospital.repository.HospitalCommentRepository;
@@ -54,9 +56,45 @@ public class HospitalService {
 	HospitalReviewRepository rRepo;
 	
 
-
+	@Cacheable(value = "hospitals_v2", key = "'all'")
 	public List<HospitalDto> findAllHospitalByIdDesc() {
-		return hRepo.findAllHospitalByIdDesc();
+
+		return hRepo.findAllHospitalByIdDesc()
+			    .stream()
+			    .map((Hospital h) -> {
+
+			        Hospital_s s = h.getHospital_s();
+
+			        HospitalDto.OperatingHours hours = HospitalDto.OperatingHours.builder()
+			            .mon(new HospitalDto.TimeRange(s.getH_mon_s(), s.getH_mon_c()))
+			            .tue(new HospitalDto.TimeRange(s.getH_tue_s(), s.getH_tue_c()))
+			            .wed(new HospitalDto.TimeRange(s.getH_wed_s(), s.getH_wed_c()))
+			            .thu(new HospitalDto.TimeRange(s.getH_tur_s(), s.getH_tur_c()))
+			            .fri(new HospitalDto.TimeRange(s.getH_fri_s(), s.getH_fri_c()))
+			            .sat(new HospitalDto.TimeRange(s.getH_sat_s(), s.getH_sat_c()))
+			            .sun(new HospitalDto.TimeRange(s.getH_sun_s(), s.getH_sun_c()))
+			            .holiday(new HospitalDto.TimeRange(s.getH_hol_s(), s.getH_hol_c()))
+			            .build();
+
+			        return HospitalDto.builder()
+			            .h_code(h.getH_code())
+			            .h_name(h.getH_name())
+			            .h_addr(h.getH_addr())
+			            .h_kind(h.getH_kind())
+			            .h_bigo(h.getH_bigo())
+			            .h_content(h.getH_content())
+			            .h_smpl_dgm(h.getH_smpl_dgm())
+			            .h_tel1(h.getH_tel1())
+			            .h_tel2(h.getH_tel2())
+			            .h_long(h.getH_long())
+			            .h_lat(h.getH_lat())
+			            .h_park_yn(h.getH_park_yn())
+			            .operatingHours(hours)
+			            .lunchTime(new HospitalDto.TimeRange(s.getH_lun_s(), s.getH_lun_c()))
+			            .createdAt(h.getCreatedAt())
+			            .build();
+			    })
+		    .toList();
 	}
 
 	public List<H_ReviewAppmDto> findAllReviewByIdDesc() {

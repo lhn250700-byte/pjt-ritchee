@@ -25,44 +25,12 @@ import com.study.spring.user.entity.User;
 public interface HospitalRepository extends JpaRepository<Hospital, String> {
 
 	@Query("""
-			select new com.study.spring.hospital.dto.HospitalDto(
-					h.h_code,
-					h.h_name,
-					h.h_addr,
-					h.h_kind,
-					h.h_bigo,
-					h.h_content,
-					h.h_smpl_dgm,
-					h.h_tel1,
-					h.h_tel2,
-					h.h_long,
-					h.h_lat,
-					h.h_park_yn,
-					s.h_mon_s,
-					s.h_mon_c,
-					s.h_tue_s,
-					s.h_tue_c,
-					s.h_wed_s,
-					s.h_wed_c,
-					s.h_tur_s,
-					s.h_tur_c,
-					s.h_fri_s,
-					s.h_fri_c,
-					s.h_sat_s,
-					s.h_sat_c,
-					s.h_sun_s,
-					s.h_sun_c,
-					s.h_hol_s,
-					s.h_hol_c,
-					s.h_lun_s,
-					s.h_lun_c,
-					h.createdAt
-				)
-				from Hospital h
-				join h.hospital_s s
-				order by h.h_code desc
-				""")
-	List<HospitalDto> findAllHospitalByIdDesc();
+	    select h
+	    from Hospital h
+	    join fetch h.hospital_s
+	    order by h.h_code desc
+		""")
+	List<Hospital> findAllHospitalByIdDesc();
 
 	@Query("""
 			select h

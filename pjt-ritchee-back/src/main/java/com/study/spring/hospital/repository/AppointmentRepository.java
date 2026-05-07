@@ -73,7 +73,7 @@ public interface AppointmentRepository extends JpaRepository<H_appm, Integer> {
 			    LEFT JOIN h_review r ON a.a_id = r.a_id
 			    WHERE a.a_user_id = :userId
 			        AND COALESCE(a.a_del_yn,'N') = 'N'
-			    ORDER BY a_date DESC, a_time DESC 
+			    ORDER BY a.a_date DESC 
 			""", countQuery = """
 			    SELECT count(a.a_id)
 			    FROM h_appm a

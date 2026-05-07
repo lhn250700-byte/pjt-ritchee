@@ -11,6 +11,7 @@ import javax.management.RuntimeErrorException;
 
 import com.study.spring.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -125,7 +126,9 @@ public class HospitalController {
 		try {
 			Integer id = hService.appmCreate(req);
 			return ResponseEntity.ok(id);	
-		} catch (Exception e) {
+		} catch (DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 예약된 시간입니다.");
+		}  catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Apponintment FAILURE: " + e.getMessage());	
 		} 
 	}

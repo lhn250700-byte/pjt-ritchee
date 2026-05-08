@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.study.spring.hospital.service.AppointmentService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +31,8 @@ public class AppointmentController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+    @Autowired
+    private AppointmentService appointmentService;
 
     // 유저별 예약 내역 페이징 조회
 //    @GetMapping("/appmlist/{a_user_id}")
@@ -154,28 +158,23 @@ public class AppointmentController {
     // 소견서 작성
     @PutMapping("/api/appmlist/opinionUpdate/{a_id}")
     public ResponseEntity<String> updateOpinion(
-          @PathVariable("a_id") int a_id,
-          @RequestParam("a_dia_name") String a_dia_name,
-          @RequestParam("a_dia_content") String a_dia_content) {
+            @PathVariable("a_id") int a_id,
+            @RequestParam("a_dia_name") String a_dia_name,
+            @RequestParam("a_dia_content") String a_dia_content) {
 
+        try {
+            appointmentService.updateOpinion(a_id, a_dia_name, a_dia_content);
+            return ResponseEntity.ok("예약 ID " + a_id + " 수정 완료");
 
-      Optional<H_appm> appointmentOpt = appointmentRepository.findById(a_id);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
 
-      if (appointmentOpt.isPresent()) {
-          H_appm existingAppointment = appointmentOpt.get();
-          // 나머지 필드 업데이트
-          existingAppointment.setA_dia_name(a_dia_name);
-          existingAppointment.setA_dia_content(a_dia_content);
-          
-          // DB 저장 (@PreUpdate가 updatedAt 갱신)
-          appointmentRepository.save(existingAppointment);
-
-          return ResponseEntity.ok("예약 ID " + a_id + "예약내역 수정완료.");
-          
-      } else {
-          return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                               .body("예약 ID " + a_id + "를 찾을수 없습니다.");
-      }
+        } catch (RuntimeException e) {
+            // 낙관적 락 충돌 포함
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(e.getMessage());
+        }
     }
     
   

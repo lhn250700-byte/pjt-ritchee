@@ -29,7 +29,7 @@ export default function () {
   // 동일 예약 슬롯 경쟁
   const payload = JSON.stringify({
     h_code: 'A1107492',
-    a_date: '2026-05-07 16:00',
+    a_date: '2026-05-08 17:00',
     a_content: '동시성 테스트',
     a_user_id: userId,
     a_del_yn: 'N',

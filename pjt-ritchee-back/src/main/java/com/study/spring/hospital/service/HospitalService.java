@@ -5,8 +5,11 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.study.spring.hospital.entity.*;
+import com.study.spring.hospital.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,15 +33,6 @@ import com.study.spring.hospital.dto.ReservationResponseDto;
 import com.study.spring.hospital.dto.ReviewCreateDto;
 
 import com.study.spring.hospital.dto.ReviewDto;
-import com.study.spring.hospital.entity.H_appm;
-import com.study.spring.hospital.entity.H_review;
-import com.study.spring.hospital.entity.Hospital;
-import com.study.spring.hospital.entity.Hospital_s;
-import com.study.spring.hospital.repository.HospitalAppmRepository;
-
-import com.study.spring.hospital.repository.HospitalCommentRepository;
-import com.study.spring.hospital.repository.HospitalRepository;
-import com.study.spring.hospital.repository.HospitalReviewRepository;
 
 import com.study.spring.user.entity.User;
 import com.study.spring.user.repository.UserRepository;
@@ -54,6 +48,8 @@ public class HospitalService {
 	HospitalAppmRepository aRepo;
 	@Autowired
 	HospitalReviewRepository rRepo;
+	@Autowired
+	HRSlotRepository hrRepo;
 	
 
 	@Cacheable(value = "hospitals_v2", key = "'all'")
@@ -244,7 +240,14 @@ public class HospitalService {
 
 	    User user = uRepo.findById(req.getA_user_id())
 	            .orElseThrow(() -> new RuntimeException("User not Found"));
-	    
+
+		HRSlot slot = hrRepo.findSlotForUpdate(
+				req.getH_code(),
+				req.getA_date()
+		).orElseThrow(() -> new RuntimeException("Slot not Found"));
+
+		// 예약 가능 여부
+		if (!slot.isAvailable()) throw new DataIntegrityViolationException("이미 예약된 시간입니다.");
 
 	    H_appm appm = H_appm.builder()
 	            .hospital(hospital)
@@ -254,6 +257,8 @@ public class HospitalService {
 	            .a_del_yn(req.getA_del_yn())
 	            .build();
 	    H_appm saved = aRepo.save(appm);
+		slot.reserve();
+
 	    return saved.getA_id();
 	}
 

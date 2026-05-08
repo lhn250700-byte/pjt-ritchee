@@ -6,17 +6,7 @@ import java.util.UUID;
 
 import com.study.spring.user.entity.User;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -28,6 +18,10 @@ public class H_appm {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement 설정
 	private int a_id;
+
+	@Version
+	@Column(nullable = false)
+	private Long version = 0L;
 	
 	@OneToOne(mappedBy = "h_appm")
 	private H_review h_review;

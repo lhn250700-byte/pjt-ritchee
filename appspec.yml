@@ -14,5 +14,5 @@ permissions:
 
 hooks:
   ApplicationStart:
-    - location: pjt-ritchee-back/scripts/deploy.sh
+    - location: scripts/deploy.sh
       timeout: 60

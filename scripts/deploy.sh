@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. plain이 붙지 않은 진짜 실행 가능한 jar 파일만 변수에 담습니다.
-BUILD_JAR=$(ls /home/ubuntu/app/build/libs/*.jar | grep -v 'plain' | tail -n 1)
+BUILD_JAR=$(ls /home/ubuntu/app/*.jar | grep -v 'plain' | tail -n 1)
 
 # 만약 진짜 jar 파일이 없다면 에러 로그를 남기고 종료합니다.
 if [ -z "$BUILD_JAR" ]; then

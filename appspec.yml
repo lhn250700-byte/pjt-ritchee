@@ -2,7 +2,8 @@ version: 0.0
 os: linux
 
 files:
-  - source: /pjt-ritchee-back/
+  # [수정] 압축 파일 루트에 있는 알맹이들을 EC2의 /home/ubuntu/app 폴더로 바로 보냅니다.
+  - source: /
     destination: /home/ubuntu/app
     overwrite: yes
 
@@ -14,5 +15,7 @@ permissions:
 
 hooks:
   ApplicationStart:
+    # [수정] 압축 파일 루트에 scripts 폴더가 바로 있으므로 앞의 폴더명을 뗍니다.
     - location: scripts/deploy.sh
-      timeout: 60
+      timeout: 300
+      runas: ubuntu

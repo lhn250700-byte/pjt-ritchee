@@ -53,16 +53,26 @@ jobs:
         run: ./gradlew clean build -x test
         working-directory: ./pjt-ritchee-back
 
-      # [수정 1] 배포에 꼭 필요한 파일들만 임시 폴더(deploy-package)로 모으기
+      # [수정] 파일 위치를 수동으로 지정하지 않고, 자동 검색(find) 방식으로 변경합니다.
       - name: Ready for Deploy
         run: |
           mkdir -p deploy-package
-          # 1. 빌드된 진짜 JAR 파일만 쏙 빼서 복사 (plain 파일 제외)
-          cp pjt-ritchee-back/build/libs/*-SNAPSHOT.jar deploy-package/ 2>/dev/null || cp pjt-ritchee-back/build/libs/*.jar deploy-package/
-          # 2. AWS 배포 설계도(appspec.yml) 복사
+          
+          # 1. plain이 붙지 않은 진짜 실행 가능한 JAR 파일을 프로젝트 전체에서 찾아 복사합니다.
+          find . -name "*-SNAPSHOT.jar" ! -name "*-plain.jar" -exec cp {} deploy-package/ \;
+          
+          # 2. 만약 SNAPSHOT 명칭이 없다면, plain을 제외한 모든 jar 파일을 검색해서 복사합니다.
+          if [ ! -f deploy-package/*.jar ]; then
+            find . -name "*.jar" ! -name "*-plain.jar" -exec cp {} deploy-package/ \;
+          fi
+          
+          # 3. 배포 설계도와 스크립트 폴더 복사
           cp appspec.yml deploy-package/
-          # 3. 배포 스크립트가 담긴 scripts 폴더 복사
           cp -r scripts deploy-package/
+          
+          # 복사가 잘 되었는지 깃허브 액션스 로그창에 목록을 출력해 확인합니다.
+          echo ">>> 디플로이 패키지 구성 완료 목록:"
+          ls -al deploy-package/
         shell: bash
 
       # [수정 2] 모아놓은 알맹이 폴더 안으로 이동해서 그것만 가볍게 압축하기

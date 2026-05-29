@@ -53,9 +53,23 @@ jobs:
         run: ./gradlew clean build -x test
         working-directory: ./pjt-ritchee-back
 
-      # 빌드 파일을 zip 형식으로 압축 - S3에서는 jar 저장이 안되기 때문에 zip으로 생성
+      # [수정 1] 배포에 꼭 필요한 파일들만 임시 폴더(deploy-package)로 모으기
+      - name: Ready for Deploy
+        run: |
+          mkdir -p deploy-package
+          # 1. 빌드된 진짜 JAR 파일만 쏙 빼서 복사 (plain 파일 제외)
+          cp pjt-ritchee-back/build/libs/*-SNAPSHOT.jar deploy-package/ 2>/dev/null || cp pjt-ritchee-back/build/libs/*.jar deploy-package/
+          # 2. AWS 배포 설계도(appspec.yml) 복사
+          cp appspec.yml deploy-package/
+          # 3. 배포 스크립트가 담긴 scripts 폴더 복사
+          cp -r scripts deploy-package/
+        shell: bash
+
+      # [수정 2] 모아놓은 알맹이 폴더 안으로 이동해서 그것만 가볍게 압축하기
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA.zip .
+        run: |
+          cd deploy-package
+          zip -r ../$GITHUB_SHA.zip .
         shell: bash
 
       # AWS 권한

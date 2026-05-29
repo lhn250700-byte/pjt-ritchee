@@ -41,14 +41,17 @@ jobs:
           echo "${{ secrets.APPLICATION }}" > ./application.yml
           echo "${{ secrets.COMMON }}" > ./application-common.yml
           echo "${{ secrets.PROD }}" > ./application-prod.yml
+        working-directory: ./pjt-ritchee-back
 
       # 권한 부여
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
+        working-directory: ./pjt-ritchee-back
 
       - name: Build and Test
         run: ./gradlew build test
+        working-directory: ./pjt-ritchee-back
 
       # 빌드 파일을 zip 형식으로 압축 - S3에서는 jar 저장이 안되기 때문에 zip으로 생성
       - name: Make zip file
